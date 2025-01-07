@@ -26,15 +26,16 @@ function App() {
   const [prepared, setPrepared] = useState(false);
 
   // Create ingredientClick event listener
-  function ingredientClick(index){
+  function ingredientClick(index) {
     const updatedRecipe = { ...recipe };
-    updatedRecipe.ingredients[index].prepared = !updatedRecipe.ingredients[index].prepared;
+    updatedRecipe.ingredients[index].prepared =
+      !updatedRecipe.ingredients[index].prepared;
     setRecipe(updatedRecipe);
   }
 
-  // Add the effect hook
+  // Add the effect hook !!
   useEffect(() => {
-    setPrepared(recipe.ingredients.every(i => i.prepared));
+    setPrepared(recipe.ingredients.every((i) => i.prepared));
   }, [recipe]);
 
   return (
@@ -48,10 +49,13 @@ function App() {
       ></RecipeTitle>
 
       {/* Pass ingredients and event listener to IngredientList */}
-      <IngredientList ingredients={recipe.ingredients} onClick={ ingredientClick } />
+      <IngredientList
+        ingredients={recipe.ingredients}
+        onClick={ingredientClick}
+      />
 
       {/* Add the prep work display */}
-      { prepared ? <h2>Prep work done!</h2> : <h2>Just keep chopping.</h2>}
+      {prepared ? <h2>Prep work done!</h2> : <h2>Just keep chopping.</h2>}
     </article>
   );
 }
